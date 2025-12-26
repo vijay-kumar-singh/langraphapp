@@ -1,1 +1,1 @@
-# langraphapp
+This is a compact LangGraph + FastAPI application that exposes a simple HTTP API to interact with a small “agent workflow” powered by OpenAI’s models. 
