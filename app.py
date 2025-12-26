@@ -20,7 +20,10 @@ def run_graph(data: Input):
 
     try:
         # Call LangGraph workflow
-        result = workflow.invoke({"messages": [data.message]})
+        result = workflow.invoke(
+    {"messages": [data.message]},
+    config={"recursion_limit": 10}
+)
         return {"response": result["messages"][-1].content}
     except Exception as e:
         # Catch errors instead of returning 500

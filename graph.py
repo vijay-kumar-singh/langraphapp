@@ -53,15 +53,13 @@ def build_graph():
     graph.add_node("tools", ToolNode(tools))
 
     graph.set_entry_point("llm")
-
-    # After llm → check stop condition
     graph.add_conditional_edges("llm", should_continue)
-
-    # After tools → go back to llm
     graph.add_edge("tools", "llm")
 
-    # Prevent runaway loops
-    return graph.compile(recursion_limit=10)
+    # old versions do NOT allow recursion_limit in compile()
+    workflow = graph.compile()
+
+    return workflow
 
 
 workflow = build_graph()
